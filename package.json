@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vkjs/vk-hash#readme",
   "dependencies": {
+    "crypto-js": "^3.1.9-1",
     "sha256": "^0.2.0"
   }
 }

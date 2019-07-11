@@ -1,9 +1,20 @@
-const log = require('./libs/log');
+const parseQueryString = require('./libs/parseQueryString');
+const CryptoJS = require('crypto-js');
 
 class VKHash {
     constructor(attrs = {}){
-        log(attr);
+        this.key = attrs.key;
+    }
+
+    validateQueryString(qs = ''){
+        const query = parseQueryString(qs);
+        const qss = Object.entries(query).filter(arr => arr[0].includes('vk_')).map(arr => `${arr[0]}=${arr[1]}`).sort(function(a, b){
+            return a === b ? 0 : a < b ? -1 : 1;
+        });
+        const vss = qss.join('&');
+        const hash = CryptoJS.HmacSHA256(vss, this.key).toString(CryptoJS.enc.Base64);
+        return hash.replace(/[^a-zA-Z0-9\s!?]+/g, '') === query.sign.replace(/[^a-zA-Z0-9\s!?]+/g, '')
     }
 }
 
-module.exports = log;
+module.exports = VKHash;
