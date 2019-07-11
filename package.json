@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vkjs/vk-hash/issues"
   },
-  "homepage": "https://github.com/vkjs/vk-hash#readme"
+  "homepage": "https://github.com/vkjs/vk-hash#readme",
+  "dependencies": {
+    "sha256": "^0.2.0"
+  }
 }
